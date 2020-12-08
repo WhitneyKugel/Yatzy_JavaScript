@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Whitney Kugel</title>
+    <link rel="Stylesheet" type="text/css" href="css/yatzy.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body id="body">
+    <main>
+      <audio id="gamemusic" src="music/yatzy_game_music.mp3" type="audio/mpeg"></audio>
+      <div id="mainmenuscreen">
+        <h1>YATZY</h1>
+        <button id="newgamebutton">New Game</button>
+        <button id="aboutbutton">About</button>
+        <button id="continuebutton">Continue</button>
+      </div>
+      <div id="newgamescreen">
+        <h1 id="gamescreentitle">YATZY</h1>
+        <h2 id="player"></h2>
+        <button id="mainmenubuttonfromgame">Main Menu</button>
+        <button id="aboutbuttonfromgame">About</button>
+        <button id="rolldicebutton">Roll Dice!</button>
+        <audio id="rollsound" src="sfx/rollSFX.mp3"></audio>
+        <table>
+          <tr>
+            <th>Category</th>
+            <th>Score</th>
+            <th>Category</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td>Ones</td>
+            <td id="onesscore"></td>
+            <td>Three of a Kind</td>
+            <td id="threeofakindscore"></td>
+          </tr>
+          <tr>
+            <td>Twos</td>
+            <td id="twosscore"></td>
+            <td>Four of a Kind</td>
+            <td id="fourofakindscore"></td>
+          </tr>
+          <tr>
+            <td>Threes</td>
+            <td id="threesscore"></td>
+            <td>Small Straight</td>
+            <td id="smallstraightscore"></td>
+          </tr>
+          <tr>
+            <td>Fours</td>
+            <td id="foursscore"></td>
+            <td>Large Straight</td>
+            <td id="largestraightscore"></td>
+          </tr>
+          <tr>
+            <td>Fives</td>
+            <td id="fivesscore"></td>
+            <td>Full House</td>
+            <td id="fullhousescore"></td>
+          </tr>
+          <tr>
+            <td>Sixes</td>
+            <td id="sixesscore"></td>
+            <td>Chance</td>
+            <td id="chancescore"></td>
+          </tr>
+          <tr>
+            <td>Subtotal</td>
+            <td id="subtotalscore"></td>
+            <td>Yatzy<small> Extra Yatzy (100 Points)</small></td>
+            <td id="yatzyscore"></td>
+          </tr>
+          <tr>
+            <td>Upper Score Bonus (35 points)</td>
+            <td id="upperscore"></td>
+            <td>Lower Total</td>
+            <td id="lowerscoretotal"></td>
+          </tr>
+          <tr>
+            <td>Upper Total</td>
+            <td id="upperscoretotal"></td>
+            <td>Grand Total</td>
+            <td id="grandtotalscore"></td>
+          </tr>
+        </table>
+        <p id="rollmessage">LET'S PLAY YATZY!!</p>
+        <div id="dicearea">
+          <img id="die1" src="" alt="">
+          <img id="die2" src="" alt="">
+          <img id="die3" src="" alt="">
+          <img id="die4" src="" alt="">
+          <img id="die5" src="" alt="">
+        </div>
+
+      </div>
+      <div id="aboutscreen">
+        <h3>About</h3>
+        <button id="mainmenubuttonfromabout">Main Menu</button>
+        <button id="backtogamebutton">To Game</button>
+        <p>Created by Whitney Kugel. Project final for Programming Fundamental at Chippewa Valley Technical College. Created December 2020. Version 1.0</p>
+      </div>
+    </main>
+    <footer></footer>
+    <script src="js/yatzy.js"></script> 
+  </body>
+</html>
