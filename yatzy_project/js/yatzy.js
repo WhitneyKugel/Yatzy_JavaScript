@@ -1,28 +1,41 @@
-
-//Game Music Play from HTML Maybe don't need this
-window.onload = function StartMusic() {
-  PlayMusic();
-}
-
-function PlayMusic() {
-  document.getElementById("gamemusic").play()
-
-}
-
-
 // This is a playable game of the generic dice poker game called "Yatzy"
 function Yatzy() {
+//Game Music
+function PlayMusic() {
+  document.getElementById("gamemusic").play();
+}
+
+function PauseMusic() {
+  document.getElementById("gamemusic").pause();
+}
+
+
+//SFX
+
+//Rolling Dice SFX
+function RollingDiceSFX() {
+  document.getElementById("rollsound").play();
+}
+
+//Yatzy Rolled SFX
+function RolledYatzySFX() {
+  document.getElementById("yaztysfx").play();
+}
+
+//End of Game SFX
+function GameEndSFX() {
+  document.getElementById("clapping").play();
+}
+
+
   //Declare Variables for new game setup. Multiple sections to set up. 
 
   //User name
   var playerName = "";
+  var playerNameEntered = false;
 
   //Screen State
-  var homepage = true;
-  var clearedVariables = true;
   var continuegame = false;
-  var highscores = false;
-  var about = false;
 
   //Rolled Dice
   var rolledDice = [];
@@ -52,7 +65,6 @@ function Yatzy() {
   var largeStraight = 0;
   var chance = 0;
   var yatzy = 0;
-  var additionalYatzy = 0;
   var lowerScoreTotal = 0;
   var grandTotalScore = 0;
 
@@ -75,30 +87,10 @@ function Yatzy() {
   var bonusYatzyScored = false;
   var scoredThisRound = false;
   var endOfGame = false;
+  var gameMusic = true;
+  var gameSFX = true;
 
-  //Function to sum all dice in array
-  function SumAllDice(total, number) {
-    return total + number;
-  }
-  
-  //Get player name
-  function PlayerName() {
-    playerName = prompt("Enter your name (under 20 character)");
-    if (playerName.length > 20) {
-      PlayerName();
-    }else{
-      document.getElementById("player").innerHTML = "Ready to play, " + playerName + "!";
-    }
-  }
-
-  //Start New Game
-  document.getElementById("newgamebutton").onclick = function NewGame(){
-    //PlayerName();
-    continuegame = true;
-    document.getElementById("mainmenuscreen").style.display = "none";
-    document.getElementById("continuebutton").style.display = "none";
-    document.getElementById("mainmenubuttonfromgame").style.display = "grid";
-    document.getElementById("newgamescreen").style.display = "grid";
+  function ResetVars() {
     //Rolled Dice
     rolledDice = [];
     sortedRolledDice = [];
@@ -172,37 +164,75 @@ function Yatzy() {
     for (var dicecount = 1; dicecount < 6; dicecount ++) {
       document.getElementById("die" + dicecount).style.display = "none";
     }
+    document.getElementById("backtogamebutton").style.display = "block";
   }
 
-  //Rolling Dice SFX
-  function RollingDiceSFX() {
-    document.getElementById("rollsound").play();
+
+  //Function to sum all dice in array
+  function SumAllDice(total, number) {
+    return total + number;
+  }
+  
+  /*Get player name
+  function PlayerName() {
+    playerName = prompt("Enter your name (under 20 character)");
+    if (playerName.length > 20 || playerName.length == 0) {
+      PlayerName();
+    }else{
+      playerNameEntered = true;
+      document.getElementById("player").innerHTML = "Ready to play, " + playerName + "!";
+    }
+  }*/
+
+  //Start New Game
+  document.getElementById("newgamebutton").onclick = function NewGame(){
+    /*if (playerNameEntered == false) {
+      PlayerName();
+    }*/
+    if (gameMusic == true) {
+      PlayMusic();
+    }
+    continuegame = true;
+    document.getElementById("mainmenuscreen").style.display = "none";
+    document.getElementById("continuebutton").style.display = "block";
+    document.getElementById("mainmenubuttonfromgame").style.display = "block";
+    document.getElementById("gamescreen").style.display = "grid";
+    ResetVars();
   }
 
+  
+
+  
   //Continue Game Show or Hide
   function continueGameButton() {
     if (continuegame == false) {
       document.getElementById("continuebutton").style.display = "none";
+      document.getElementById("backtogamebutton").style.display = "none";
     }else{
       document.getElementById("continuebutton").style.display = "block";
+      document.getElementById("backtogamebutton").style.display = "block";
     }
   }
 
   //To Current Game From Main Menu
   document.getElementById("continuebutton").onclick = function ContinueGame(){
     document.getElementById("mainmenuscreen").style.display = "none";
-    document.getElementById("newgamescreen").style.display = "grid";
+    document.getElementById("gamescreen").style.display = "grid";
   }
   
   //End of Game Screen
   function EndOfGame() {
-    document.getElementById("rollmessage").innerHTML = "CONGRATULATIONS!\nYou scored " + grandTotalScore + "\npoints this game!";
     endOfGame = true;
+    document.getElementById("rollmessage").innerHTML = "CONGRATULATIONS!\nYou scored " + grandTotalScore + "\npoints this game!";
+    document.getElementById("rolldicebutton").innerHTML = "Play Again?";
+    if (gameSFX == true) {
+      GameEndSFX();
+    }
   }
 
   //To Main Menu from Game
   document.getElementById("mainmenubuttonfromgame").onclick = function GoHome(){
-    document.getElementById("newgamescreen").style.display = "none";
+    document.getElementById("gamescreen").style.display = "none";
     document.getElementById("mainmenuscreen").style.display = "grid";
     continueGameButton();
   }
@@ -215,14 +245,16 @@ function Yatzy() {
 
   //To About screen from Game Screen
   document.getElementById("aboutbuttonfromgame").onclick = function ToAboutPageFromGame() {
-    document.getElementById("newgamescreen").style.display = "none";
+    document.getElementById("gamescreen").style.display = "none";
     document.getElementById("aboutscreen").style.display = "grid";
+
   }
 
   //Back to game from About Screen
   document.getElementById("backtogamebutton").onclick = function BackToGame() {
     document.getElementById("aboutscreen").style.display = "none";
-    document.getElementById("newgamescreen").style.display = "grid";
+    document.getElementById("gamescreen").style.display = "grid";
+    continueGameButton();
   }
 
   //To Main Menu from About Screen
@@ -230,87 +262,136 @@ function Yatzy() {
     document.getElementById("aboutscreen").style.display = "none";
     document.getElementById("mainmenuscreen").style.display = "grid";
   }    
+
+
+  //To Whitney Kugel's profile website
+  document.getElementById("homesitebutton").onclick = function KugelSite() {
+    location.replace("https://www.whitneykugel.com")
+  }
+
+
+  //Game Music Off/On
+  document.getElementById("musiccontrol").onclick = function GameMusic() {
+    if (gameMusic == true) {
+      gameMusic = false;
+      document.getElementById("musiccontrol").innerHTML = "Music Off";
+      PauseMusic();
+    }else{
+      gameMusic = true;
+      document.getElementById("musiccontrol").innerHTML = "Music On";
+      PlayMusic();
+    }
+  }
+
+  //Game SFX Off/On
+  document.getElementById("soundcontrol").onclick = function GameSFX() {
+    if (gameSFX == true) {
+      gameSFX = false;
+      document.getElementById("soundcontrol").innerHTML = "SFX Off";
+    }else{
+      gameSFX = true;
+      document.getElementById("soundcontrol").innerHTML = "SFX On";
+    }
+  }
+
+
+  //Randomization Animation. Individualized for optimization in saves and rerolls.
+  function randomizationAnimation1() {
+    rolling = true;
+    rolledDice[0] = Math.ceil((Math.random() * 6));
+    document.getElementById("die1").src = "images/die_side_" + rolledDice[0] + ".png";
+    setTimeout(stopRandom1, 700);
+  }
+
+  function randomizationAnimation2() {
+    rolling = true;
+    rolledDice[1] = Math.ceil((Math.random() * 6));
+    document.getElementById("die2").src = "images/die_side_" + rolledDice[1] + ".png";
+    setTimeout(stopRandom2, 700);
+  }
+
+  function randomizationAnimation3() {
+    rolling = true;
+    rolledDice[2] = Math.ceil((Math.random() * 6));
+    document.getElementById("die3").src = "images/die_side_" + rolledDice[2] + ".png";
+    setTimeout(stopRandom3, 700);
+  }
+
+  function randomizationAnimation4() {
+    rolling = true;
+    rolledDice[3] = Math.ceil((Math.random() * 6));
+    document.getElementById("die4").src = "images/die_side_" + rolledDice[3] + ".png";
+    setTimeout(stopRandom4, 700);
+  }
+
+  function randomizationAnimation5() {
+    rolling = true;
+    rolledDice[4] = Math.ceil((Math.random() * 6));
+    document.getElementById("die5").src = "images/die_side_" + rolledDice[4] + ".png";
+    setTimeout(stopRandom5, 700);
+  }
+
+  //Stops Randomization Animation. Individualized for dice to be able to be saved.
+  function stopRandom1() {
+    clearTimeout(myVar1);
+    rolling = false;
+  }
+
+  function stopRandom2() {
+    clearTimeout(myVar2);
+    rolling = false;
+  }
+
+  function stopRandom3() {
+    clearTimeout(myVar3);
+    rolling = false;
+  }
+
+  function stopRandom4() {
+    clearTimeout(myVar4);
+    rolling = false;
+  }
+
+  function stopRandom5() {
+    clearTimeout(myVar5);
+    rolling = false;
+  }
   
+
   //Determines which die image to display based on roll
   function SingleDice() {
     if (die1Saved == false) {
-      myVar1 = setInterval(myFunction1, 50);
-      function stopRandom1() {
-        clearTimeout(myVar1);
-        rolling = false;
-      }
-      
-      function myFunction1() {
-        rolling = true;
-        rolledDice[0] = Math.ceil((Math.random() * 6));
-        document.getElementById("die1").src = "images/die_side_" + rolledDice[0] + ".png";
-        setTimeout(stopRandom1, 700);
-      }
-
+      myVar1 = setInterval(randomizationAnimation1, 50);
+      randomizationAnimation1();
     }else{
       null;
     }
 
     if (die2Saved == false) {
-      myVar2 = setInterval(myFunction, 50);
-      function stopRandom2() {
-        clearTimeout(myVar2);
-        rolling = false;
-      }
-      function myFunction() {
-        rolling = true;
-        rolledDice[1] = Math.ceil((Math.random() * 6));
-        document.getElementById("die2").src = "images/die_side_" + rolledDice[1] + ".png";
-        setTimeout(stopRandom2, 700);
-      }
+      myVar2 = setInterval(randomizationAnimation2, 50);
+      randomizationAnimation2();
+
     }else{
       null;
     }
 
     if (die3Saved == false) {
-      myVar3 = setInterval(myFunction, 50);
-      function stopRandom3() {
-        clearTimeout(myVar3);
-        rolling = false;
-      }
-      function myFunction() {
-        rolling = true;
-        rolledDice[2] = Math.ceil((Math.random() * 6));
-        document.getElementById("die3").src = "images/die_side_" + rolledDice[2] + ".png";
-        setTimeout(stopRandom3, 700);
-      }
+      myVar3 = setInterval(randomizationAnimation3, 50);
+      randomizationAnimation3();
     }else{
       null;
     }
 
     if (die4Saved == false) {
-      myVar4 = setInterval(myFunction, 50);
-      function stopRandom4() {
-        clearTimeout(myVar4);
-        rolling = false;
-      }
-      function myFunction() {
-        rolling = true;
-        rolledDice[3] = Math.ceil((Math.random() * 6));
-        document.getElementById("die4").src = "images/die_side_" + rolledDice[3] + ".png";
-        setTimeout(stopRandom4, 700);
-      }
+      myVar4 = setInterval(randomizationAnimation4, 50);
+      randomizationAnimation4();
     }else{
       null;
     }
 
     if (die5Saved == false) {
-      myVar5 = setInterval(myFunction, 50);
-      function stopRandom5() {
-        clearTimeout(myVar5);
-        rolling = false;
-      }
-      function myFunction() {
-        rolling = true;
-        rolledDice[4] = Math.ceil((Math.random() * 6));
-        document.getElementById("die5").src = "images/die_side_" + rolledDice[4] + ".png";
-        setTimeout(stopRandom5, 700);
-      }
+      myVar5 = setInterval(randomizationAnimation5, 50);
+      randomizationAnimation5();
     }else{
       null;
     }
@@ -329,13 +410,10 @@ function Yatzy() {
           scoredThisRound = false;
           rolledDice.length = 0;
           document.getElementById("rollmessage").innerHTML = "ROLL 1!"; 
-      
         }else if (rollNumber === 1) {
           document.getElementById("rollmessage").innerHTML = "ROLL 2!";
-
         }else if (rollNumber === 2) {
           document.getElementById("rollmessage").innerHTML = "ROLL 3!";
-
         }else{
           null;
         }
@@ -344,16 +422,20 @@ function Yatzy() {
           document.getElementById("die" + dicecount).style.display = "grid";
         }
         if (rolling == false) {
-          RollingDiceSFX();
           SingleDice();
+          if (gameSFX == true) {
+            RollingDiceSFX();
+          }
         }else{
           null;
         }
-      
-        
       }else{
-        document.getElementById("rollmessage").innerHTML = "NO MORE ROLLS. PLEASE SCORE.";
+        document.getElementById("rollmessage").innerHTML = "NO MORE ROLLS.";
       }
+    }else{
+      ResetVars();
+      RollDice();
+      document.getElementById("rolldicebutton").innerHTML = "Roll Dice!";
     }
   }
 
@@ -418,16 +500,16 @@ function Yatzy() {
     if (onesScored && twosScored && threesScored && foursScored && fivesScored && sixesScored && threeOfAKindScored && fourOfAKindScored && smallStraightScored && largeStraightScored && fullHouseScored && chanceScored && (yatzyScored || yatzyScratched)) {
       EndOfGame();
     }else{
-      NewGame();
+      PlayGame();
     }
   }
 
   //New Game
-  function NewGame() {
+  function PlayGame() {
     //Ones score
     document.getElementById("onesscore").onclick = function OnesScoring() {
       if (scoredThisRound == true) {
-        document.getElementById("rollmessage").innerHTML = "ALREADY SCORED THIS ROUND!";
+        document.getElementById("rollmessage").innerHTML = "ALREADY SCORED!";
       }else{
         if (onesScored == false) {
           for (var count = 0; count < 6; count++) {
@@ -443,7 +525,11 @@ function Yatzy() {
           rollNumber = 0;
           document.getElementById("onesscore").innerHTML = ones;
           document.getElementById("subtotalscore").innerHTML = upperScoreSubTotal;
-          document.getElementById("rollmessage").innerHTML = "Ones Scored: " + ones;
+          if (ones == 1) {
+            document.getElementById("rollmessage").innerHTML = "Ones Scored: " + ones + " point!";
+          }else{
+            document.getElementById("rollmessage").innerHTML = "Ones Scored: " + ones + " points!";
+          }
           UpperTotal();
         }else{
           document.getElementById("rollmessage").innerHTML = "ALREADY SCORED ONES!";
@@ -471,7 +557,7 @@ function Yatzy() {
           rollNumber = 0;
           document.getElementById("twosscore").innerHTML = twos;
           document.getElementById("subtotalscore").innerHTML = upperScoreSubTotal;
-          document.getElementById("rollmessage").innerHTML = "Twos Scored: " + twos;
+          document.getElementById("rollmessage").innerHTML = "Twos Scored: " + twos + " points!";
           UpperTotal();
         }else{
           document.getElementById("rollmessage").innerHTML = "ALREADY SCORED TWOS!";
@@ -499,7 +585,7 @@ function Yatzy() {
           rollNumber = 0;
           document.getElementById("threesscore").innerHTML = threes;
           document.getElementById("subtotalscore").innerHTML = upperScoreSubTotal;
-          document.getElementById("rollmessage").innerHTML = "Threes Scored: " + threes;
+          document.getElementById("rollmessage").innerHTML = "Threes Scored: " + threes + " points!";
           UpperTotal();
         }else{
           document.getElementById("rollmessage").innerHTML = "ALREADY SCORED THREES!";
@@ -527,7 +613,7 @@ function Yatzy() {
           rollNumber = 0;
           document.getElementById("foursscore").innerHTML = fours;
           document.getElementById("subtotalscore").innerHTML = upperScoreSubTotal;
-          document.getElementById("rollmessage").innerHTML = "Fours Scored: " + fours;
+          document.getElementById("rollmessage").innerHTML = "Fours Scored: " + fours + " points!";
           UpperTotal();
         }else{
           document.getElementById("rollmessage").innerHTML = "ALREADY SCORED FOURS!";
@@ -555,7 +641,7 @@ function Yatzy() {
           rollNumber = 0;
           document.getElementById("fivesscore").innerHTML = fives;
           document.getElementById("subtotalscore").innerHTML = upperScoreSubTotal;
-          document.getElementById("rollmessage").innerHTML = "Fives Scored: " + fives;
+          document.getElementById("rollmessage").innerHTML = "Fives Scored: " + fives + " points!";
           UpperTotal();
         }else{
           document.getElementById("rollmessage").innerHTML = "ALREADY SCORED FIVES!";
@@ -583,7 +669,7 @@ function Yatzy() {
           rollNumber = 0;
           document.getElementById("sixesscore").innerHTML = sixes;
           document.getElementById("subtotalscore").innerHTML = upperScoreSubTotal;
-          document.getElementById("rollmessage").innerHTML = "Sixes Scored: " + sixes;
+          document.getElementById("rollmessage").innerHTML = "Sixes Scored: " + sixes + " points!";
           UpperTotal();
         }else{
           document.getElementById("rollmessage").innerHTML = "ALREADY SCORED SIXES!";
@@ -596,7 +682,6 @@ function Yatzy() {
     function BonusPoints() {
       if (upperScoreSubTotal >= 63) {
         upperScoreBonus = 35;
-        upperScoreSubTotal += 35;
       }else{
         upperScoreBonus = 0;
         upperScoreSubTotal += 0;
@@ -629,14 +714,14 @@ function Yatzy() {
               RecalculateTotal();
               document.getElementById("threeofakindscore").innerHTML = sortedRolledDice.reduce(SumAllDice);
               document.getElementById("lowerscoretotal").innerHTML = lowerScoreTotal;
-              document.getElementById("rollmessage").innerHTML = "Three of a Kind: " + threeOfAKind;
+              document.getElementById("rollmessage").innerHTML = "Three of a Kind: " + threeOfAKind + " points!";
               threeOfAKindScored = true;
               scoredThisRound = true;
             }else{
               if (threeOfAKindScored == false) {
                 threeOfAKindScored = true;
                 scoredThisRound = true;
-                document.getElementById("rollmessage").innerHTML = "No three of a kind!";
+                document.getElementById("rollmessage").innerHTML = "No Three of a kind!";
                 document.getElementById("threeofakindscore").innerHTML = 0;
               }
             }
@@ -663,14 +748,14 @@ function Yatzy() {
               RecalculateTotal();
               document.getElementById("fourofakindscore").innerHTML = sortedRolledDice.reduce(SumAllDice);
               document.getElementById("lowerscoretotal").innerHTML = lowerScoreTotal;
-              document.getElementById("rollmessage").innerHTML = "Four of a Kind: " + fourOfAKind;
+              document.getElementById("rollmessage").innerHTML = "Four of a Kind: " + fourOfAKind + " points!";
               fourOfAKindScored = true;
               scoredThisRound = true;
             }else{
               if (fourOfAKindScored == false) {
                 fourOfAKindScored = true;
                 scoredThisRound = true;
-                document.getElementById("rollmessage").innerHTML = "No four of a kind!";
+                document.getElementById("rollmessage").innerHTML = "No Four of a kind!";
                 document.getElementById("fourofakindscore").innerHTML = 0;
               }
             }
@@ -698,7 +783,9 @@ function Yatzy() {
             lowerScoreTotal += 30;
             RecalculateTotal();
             document.getElementById("smallstraightscore").innerHTML = smallStraight;
+            document.getElementById("rollmessage").innerHTML = "Small Straight: " + smallStraight + " points!";
           }else{
+            document.getElementById("rollmessage").innerHTML = "No Small Straight!";
             document.getElementById("smallstraightscore").innerHTML = 0;
           }
         }else{
@@ -724,7 +811,9 @@ function Yatzy() {
             lowerScoreTotal += 40;
             RecalculateTotal();
             document.getElementById("largestraightscore").innerHTML = largeStraight;
+            document.getElementById("rollmessage").innerHTML = "Large Straight: " + largeStraight + " points!";
           }else{
+            document.getElementById("rollmessage").innerHTML = "No Large Straight!";
             document.getElementById("largestraightscore").innerHTML = 0;
           }
         }else{
@@ -748,7 +837,7 @@ function Yatzy() {
             RecalculateTotal();
             document.getElementById("fullhousescore").innerHTML = fullHouse;
             document.getElementById("lowerscoretotal").innerHTML = lowerScoreTotal;
-            document.getElementById("rollmessage").innerHTML = "Full House: " + fullHouse;
+            document.getElementById("rollmessage").innerHTML = "Full House: " + fullHouse + " points!";
             fullHouseScored = true;
             scoredThisRound = true;
           }else{
@@ -760,7 +849,7 @@ function Yatzy() {
             }
           }
         }else{
-          document.getElementById("rollmessage").innerHTML = "XXX ALREADY SCORED Full House!";
+          document.getElementById("rollmessage").innerHTML = "ALREADY SCORED FULL HOUSE!";
         }
       }
       EndGameCheck();
@@ -778,7 +867,7 @@ function Yatzy() {
           RecalculateTotal();
           document.getElementById("chancescore").innerHTML = chance;
           document.getElementById("lowerscoretotal").innerHTML = lowerScoreTotal;
-          document.getElementById("rollmessage").innerHTML = "Chance Scored: " + chance;
+          document.getElementById("rollmessage").innerHTML = "Chance Scored: " + chance + " points!";
           chanceScored = true;
           scoredThisRound = true;
           rollNumber = 0;
@@ -805,6 +894,9 @@ function Yatzy() {
                   if (yatzyScored == false){
                     yatzy += 50;
                     lowerScoreTotal += 50;
+                    if (gameSFX == true) {
+                      RolledYatzySFX();
+                    }
                     RecalculateTotal();
                     yatzyScored = true;
                     scoredThisRound = true;
@@ -812,6 +904,9 @@ function Yatzy() {
                   }else{
                     yatzy += 100;
                     lowerScoreTotal += 100;
+                    if (gameSFX == true) {
+                      RolledYatzySFX();
+                    }
                     RecalculateTotal();
                     bonusYatzyScored = true;
                     scoredThisRound = true;
@@ -826,9 +921,9 @@ function Yatzy() {
                 document.getElementById("rollmessage").innerHTML = "You didn't roll a Yatzy!";
                 document.getElementById("yatzyscore").innerHTML = 0;
               }else if (yatzyScored == true && bonusYatzyScored == false && yatzycheck == true) {
-                document.getElementById("rollmessage").innerHTML = "YATZY!";
+                document.getElementById("rollmessage").innerHTML = "YATZY! 50 POINTS!";
               }else if (yatzyScored == true && bonusYatzyScored == true && yatzycheck == true) {
-                document.getElementById("rollmessage").innerHTML = "BONUS YATZY!";
+                document.getElementById("rollmessage").innerHTML = "BONUS YATZY! 100 POINTS!";
               }else{
                 document.getElementById("rollmessage").innerHTML = "No Bonus!";
               }
@@ -863,7 +958,7 @@ function Yatzy() {
   //Display Grand Score Total
   document.getElementById("grandtotalscore").innerHTML = grandTotalScore;
   
-  NewGame();
+  PlayGame();
 }
 
 Yatzy();
