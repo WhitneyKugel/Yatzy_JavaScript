@@ -39,10 +39,10 @@ a:focus {
 	border-radius: 35%;
 	box-shadow: 0px 15px 15px rgb(0, 0, 0);
 	border-width: thick;
-	width: 5em;
-	height: 5em;
+	width: 4.5em;
+	height: 4.5em;
 	margin: auto;
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 
@@ -54,6 +54,7 @@ a:focus {
 	background-color: var(--secondarycolor1);
 	color: white;
 	border-width: 2px;
+	justify-self: end;
 }
 
 
@@ -102,9 +103,8 @@ a:focus {
 
 
 body {
-	/* background-image: url("../images/yatzy_main_screen.jpg"); */
 	background-color: var(--maincolor);
-	margin: 0;
+	margin: auto;
 }
 
 
@@ -121,9 +121,9 @@ body {
 	box-shadow: 0px 15px 15px rgb(0, 0, 0);
 	border-width: thick;
 	border-color: black;
-	width: 5em;
-	height: 5em;
-	font-size: 2em;
+	width: 4.5em;
+	height: 4.5em;
+	font-size: 1.5em;
 	text-align: center;
 	margin: auto;
 	display: none;
@@ -229,10 +229,10 @@ h5 {
 	border-radius: 35%;
 	box-shadow: 0px 15px 15px rgb(0, 0, 0);
 	border-width: thick;
-	width: 5em;
-	height: 5em;
+	width: 4.5em;
+	height: 4.5em;
 	margin: auto;
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 #homesitebutton p {
@@ -286,6 +286,7 @@ html {
 	background-color: var(--secondarycolor2);
 	color: white;
 	border-width: 2px;
+	justify-self: end;
 }
 
 
@@ -308,10 +309,10 @@ html {
 	box-shadow: 0px 15px 15px rgb(0, 0, 0);
 	border-width: thick;
 	border-color: black;
-	width: 5em;
-	height: 5em;
+	width: 4.5em;
+	height: 4.5em;
 	margin: auto;
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 
@@ -323,25 +324,25 @@ html {
 		"die1 die2 die3 die4 die5";
 	justify-content: center;
 	column-gap: 20px;
-	gap: 20px;
+	gap: 8px;
 }
 
 
 #gamescreen {
 	display: none;
-	grid-template-columns: .1fr .1fr 1fr .1fr .1fr;
+	grid-template-columns: .1fr .1 .5fr .1 .1fr;
 	grid-template-rows: .10fr .10fr 1fr .1fr .15fr .25fr;
 	grid-template-areas:
-		"tomainmenu music gametitle sfx toabout"
-		"playername playername playername playername playername"
-		"scorecard scorecard scorecard scorecard scorecard"
-		"rollmessage rollmessage rollmessage rollmessage rollmessage"
-		"dicearea dicearea dicearea dicearea dicearea"
-		"rollbutton rollbutton rollbutton rollbutton rollbutton";
+		". tomainmenu gametitle toabout ."
+		". music . sfx ."
+		". scorecard scorecard scorecard ."
+		". rollmessage rollmessage rollmessage ."
+		". dicearea dicearea dicearea ."
+		". rollbutton rollbutton rollbutton .";
 	gap: 0;
-	margin-bottom: 0;
+	margin: auto;
 	height: 100%;
-	width: 100%;
+	width: 85%;
 }
 
 
@@ -370,6 +371,7 @@ html {
 	margin-top: 10px;
 	border-color: black;
 	border-width: 5px;
+	color: white;
 }
 
 
@@ -457,7 +459,7 @@ footer {
 		margin-bottom: 0;
 		padding-top: .5em;
 		height: 100%;
-		width: 100%;
+		width: 80%;
 	}
 
 
@@ -594,6 +596,7 @@ footer {
 	#rolldicebutton {
 		font-size: 2em;
 		width: 10em;
+		color: white;
 		height: 4em;
 	}
 
