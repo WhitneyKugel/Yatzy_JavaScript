@@ -1,303 +1,616 @@
-@media only screen and (max-width: 190em) {
-  :root {
-    --maincolor: #0F800F;
-    --secondarycolor1: #79022a;
-    --secondarycolor2: #810F4F;
-  }
-  
-  
-  * {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  }
+:root {
+	--maincolor: #114B59;
+	--secondarycolor1: #902719;
+	--secondarycolor2: #905419;
+}
+
+* {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 
 
-  #aboutbutton {
-    grid-area: about;
-    background-color: rgb(255, 255, 255);
-    color: black;
-    border-color: black;
-    border-radius: 35%;
-    box-shadow: 0px 15px 15px rgb(0, 0, 0);
-    border-width: thick;
-    width: 5em;
-    height: 5em;
-    margin: auto;
-    font-size: 2em;
-  }
-  
-
-  #aboutbuttonfromgame {
-    grid-area: toabout;
-    border-radius: 30%;
-    width: 5em;
-    height: 3em;
-    background-color: indigo;
-    color: white;
-    border-width: 2px;
-  }
-
-  
-  #aboutscreen {
-    display: none;
-    text-align: center;
-    grid-template-columns: .1fr 1fr .1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: 
-    "mainfromabout abouttitle backtogame"
-    "about about about";
-  }
-
-  
-  #aboutscreen h3 {
-    font-size: 3em;
-    grid-area: abouttitle;
-    text-shadow: 6px 6px 6px rgb(0, 0, 0);
-    color: var(--secondarycolor1);
-  }
-  
-  
-  #aboutscreen p {
-    grid-area: about;
-  }
+a {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+}
 
 
-  #backtogamebutton {
-    grid-area: backtogame;
-    border-radius: 30%;
-    width: 5em;
-    height: 3em;
-    background-color: indigo;
-    color: white;
-    border-width: 2px;
-  }
-  
-  
-  body {
-    background-image: url("../images/yatzy_main_screen.jpg");
-    margin: 0;
-  }
-  
-  
-  #continuebutton {
-    grid-area: continue;
-    background-color: white;
-    color: black;
-    border-radius: 35%;
-    box-shadow: 0px 15px 15px rgb(0, 0, 0);
-    border-width: thick;
-    border-color: black;
-    width: 5em;
-    height: 5em;
-    font-size: 2em;
-    margin: auto;
-    display: none;
-  }
-  
-  
-  #dicearea #die1 {
-    display: grid;
-    grid-area: die1;
-    width: 3.5em;
-    height: 3.5em;
-  }
-  
-  
-  #dicearea #die2 {
-    display: grid;
-    grid-area: die2;
-    width: 3.5em;
-    height: 3.5em;
-  }
-  
-  
-  #dicearea #die3 {
-    display: grid;
-    grid-area: die3;
-    width: 3.5em;
-    height: 3.5em;
-  }
-  
-  
-  #dicearea #die4 {
-    display: grid;
-    grid-area: die4;
-    width: 3.5em;
-    height: 3.5em;
-  }
-  
-  
-  #dicearea #die5 {
-    display: grid;
-    grid-area: die5;
-    width: 3.5em;
-    height: 3.5em;
-  }
-  
-  
-  footer {
-    height: 3em;
-  }
-  
-  
-  #gamescreentitle{
-    display: grid;
-    font-size: 2em;
-    grid-area: gametitle;
-    color: rgb(185, 0, 0);
-    text-align: center;
-  }
+a:visited {
+	color: white;
+}
 
-  
-  h1 {
-    grid-area: title;
-    text-shadow: 6px 6px 6px rgb(0, 0, 0);
-    color: var(--secondarycolor1);
-    font-size: 3em;
-    margin: 0;
-    text-align: center;
-    width: 100%;
-  }
-  
-  html {
-    margin-bottom: 0;
-  }
-  
-  
-  #mainmenubuttonfromabout {
-    border-radius: 30%;
-    width: 5em;
-    height: 3em;
-    background-color: rgb(91, 148, 255);
-    color: white;
-    grid-area: mainfromabout;
-  }
-  
-  
-  #mainmenubuttonfromgame {
-    grid-area: tomainmenu;
-    border-radius: 30%;
-    width: 5em;
-    height: 3em;
-    background-color: indigo;
-    color: white;
-    border-width: 2px;
-  }
-  
 
-  #mainmenuscreen {
-    display: grid;
-    grid-template-columns: 1fr .10fr 1fr;
-    grid-template-rows: .10fr 1fr 1fr;
-    grid-template-areas: 
-    "title title title"
-    "newgame . about"
-    "continue . .";
-    row-gap: 50px;
-    column-gap: 10px;
-  }
-  
-  
-  #newgamebutton {
-    background-color: white;
-    color: black;
-    grid-area: newgame;
-    border-radius: 35%;
-    box-shadow: 0px 15px 15px rgb(0, 0, 0);
-    border-width: thick;
-    border-color: black;
-    width: 5em;
-    height: 5em;
-    margin: auto;
-    font-size: 2em;
-  }
-  
-  
-  #newgamescreen #dicearea {
-    grid-area: dicearea;
-    display: grid;
-    grid-template-columns: .15fr .15fr .15fr .15fr .15fr;
-    grid-template-areas: 
-    "die1 die2 die3 die4 die5";
-    justify-content: center;
-    column-gap: 20px;
-    gap: 20px;
-  }
-  
-  
-  #newgamescreen {
-    display: none;
-    grid-template-columns: .1fr 1fr .1fr;
-    grid-template-rows: .10fr .10fr 1fr .1fr .15fr .25fr;
-    grid-template-areas: 
-    "tomainmenu gametitle toabout"
-    "playername playername playername"
-    "scorecard scorecard scorecard"
-    "rollmessage rollmessage rollmessage"
-    "dicearea dicearea dicearea"
-    "rollbutton rollbutton rollbutton";
-    gap: 0;
-    margin-bottom: 0;
-    height: 100%;
-    width: 100%;
-  }
+a:hover {
+	color: var(--secondarycolor1);
+}
 
-  
-  #player {
-    grid-area: playername;
-    text-align: center;
-    font-size: 1.5em;
-    margin-bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
-    width: 100%;
-  }
-  
-  
-  #rolldicebutton {
-    border-radius: 20%;
-    background-color: rgb(177, 143, 32);
-    font-size: 2em;
-    font: bolder;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    grid-area: rollbutton;
-    height: 2.25em;
-    width: 10em;
-    justify-self: center;
-    margin-top: 10px;
-    border-color: black;
-    border-width: 5px;
-  }
-  
-  
-  #rollmessage {
-    grid-area: rollmessage;
-    font-size: 1.25em;
-    text-align: center;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  
-  
-  table {
-    background-color: rgba(255, 255, 255, 0.26);
-    display: table;
-    grid-area: scorecard;
-    border: 5px solid black;
-    text-align: left;
-    margin: 0px;
-    width: 100%;
-  }
 
-  td {
-    height: 7px;
-    width: 10px;
-    border: 1px solid black;
-  }
+a:focus {
+	color: var(--secondarycolor1);
+}
 
-  footer {
-    display: none;
-  }
+
+#aboutbutton {
+	grid-area: about;
+	background-color: var(--secondarycolor1);
+	color: black;
+	border-color: black;
+	border-radius: 35%;
+	box-shadow: 0px 15px 15px rgb(0, 0, 0);
+	border-width: thick;
+	width: 5em;
+	height: 5em;
+	margin: auto;
+	font-size: 2em;
+}
+
+
+#aboutbuttonfromgame {
+	grid-area: toabout;
+	border-radius: 30%;
+	width: 5em;
+	height: 4em;
+	background-color: var(--secondarycolor1);
+	color: white;
+	border-width: 2px;
+}
+
+
+#aboutscreen {
+	display: none;
+	text-align: center;
+	grid-template-columns: .1fr 1fr .1fr;
+	grid-template-rows: .15fr .15 3fr 1r .5fr;
+	grid-template-areas:
+		"mainfromabout abouttitle backtogame"
+		"mainfromabout abouttitle backtogame"
+		"rules rules rules"
+		"credits credits credits"
+		"about about about";
+	overflow-wrap: break-word;
+}
+
+
+#aboutscreen h3 {
+	font-size: 3em;
+	grid-area: abouttitle;
+	text-shadow: 5px 5px 6px rgb(0, 0, 0);
+	color: var(--secondarycolor2);
+	margin-bottom: 0;
+}
+
+
+#about {
+	grid-area: about;
+	padding-left: 1em;
+	padding-right: 1em;
+	text-align: justify;
+}
+
+
+#backtogamebutton {
+	grid-area: backtogame;
+	border-radius: 30%;
+	width: 5em;
+	height: 4em;
+	background-color: var(--secondarycolor1);
+	color: white;
+	border-width: 2px;
+	display: none;
+}
+
+
+body {
+	/* background-image: url("../images/yatzy_main_screen.jpg"); */
+	background-color: var(--maincolor);
+	margin: 0;
+}
+
+
+.bolder {
+	font-weight: bolder;
+}
+
+
+#continuebutton {
+	grid-area: continue;
+	background-color: var(--secondarycolor1);
+	color: black;
+	border-radius: 35%;
+	box-shadow: 0px 15px 15px rgb(0, 0, 0);
+	border-width: thick;
+	border-color: black;
+	width: 5em;
+	height: 5em;
+	font-size: 2em;
+	text-align: center;
+	margin: auto;
+	display: none;
+}
+
+
+#credits {
+	grid-area: credits;
+	text-align: left;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+
+#dicearea #die1 {
+	display: grid;
+	grid-area: die1;
+	width: 3.5em;
+	height: 3.5em;
+}
+
+
+#dicearea #die2 {
+	display: grid;
+	grid-area: die2;
+	width: 3.5em;
+	height: 3.5em;
+}
+
+
+#dicearea #die3 {
+	display: grid;
+	grid-area: die3;
+	width: 3.5em;
+	height: 3.5em;
+}
+
+
+#dicearea #die4 {
+	display: grid;
+	grid-area: die4;
+	width: 3.5em;
+	height: 3.5em;
+}
+
+
+#dicearea #die5 {
+	display: grid;
+	grid-area: die5;
+	width: 3.5em;
+	height: 3.5em;
+}
+
+
+footer {
+	height: 3em;
+}
+
+
+#gamescreentitle {
+	display: grid;
+	font-size: 2em;
+	grid-area: gametitle;
+	color: var(--secondarycolor2);
+	text-align: center;
+}
+
+
+h1 {
+	grid-area: title;
+	text-shadow: 5px 5px 6px rgb(0, 0, 0);
+	color: var(--secondarycolor2);
+	font-size: 5em;
+	margin: 0;
+	text-align: center;
+	width: 100%;
+}
+
+
+h4 {
+	margin-bottom: 0;
+	margin-top: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+	text-decoration: underline;
+}
+
+
+h5 {
+	margin-bottom: 0;
+	margin-top: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+	text-decoration: underline;
+}
+
+
+#homesitebutton {
+	grid-area: homebutton;
+	background-color: var(--secondarycolor1);
+	color: black;
+	border-color: black;
+	border-radius: 35%;
+	box-shadow: 0px 15px 15px rgb(0, 0, 0);
+	border-width: thick;
+	width: 5em;
+	height: 5em;
+	margin: auto;
+	font-size: 2em;
+}
+
+#homesitebutton p {
+	font-size: .80em;
+}
+
+
+html {
+	margin-bottom: 0;
+}
+
+
+#mainmenubuttonfromabout {
+	grid-area: mainfromabout;
+	border-radius: 30%;
+	width: 5em;
+	height: 4em;
+	background-color: var(--secondarycolor1);
+	color: white;
+}
+
+
+#mainmenubuttonfromgame {
+	grid-area: tomainmenu;
+	border-radius: 30%;
+	width: 5em;
+	height: 4em;
+	background-color: var(--secondarycolor1);
+	color: white;
+}
+
+
+#mainmenuscreen {
+	display: grid;
+	grid-template-columns: 1fr .10fr 1fr;
+	grid-template-rows: .10fr 1fr 1fr;
+	grid-template-areas:
+		"title title title"
+		"newgame . about"
+		"continue . homebutton";
+	row-gap: 50px;
+	column-gap: 10px;
+}
+
+
+#soundcontrol {
+	grid-area: sfx;
+	border-radius: 30%;
+	width: 5em;
+	height: 4em;
+	background-color: var(--secondarycolor2);
+	color: white;
+	border-width: 2px;
+}
+
+
+#musiccontrol {
+	grid-area: music;
+	border-radius: 30%;
+	width: 5em;
+	height: 4em;
+	background-color: var(--secondarycolor2);
+	color: white;
+	border-width: 2px;
+}
+
+
+#newgamebutton {
+	background-color: var(--secondarycolor1);
+	color: black;
+	grid-area: newgame;
+	border-radius: 35%;
+	box-shadow: 0px 15px 15px rgb(0, 0, 0);
+	border-width: thick;
+	border-color: black;
+	width: 5em;
+	height: 5em;
+	margin: auto;
+	font-size: 2em;
+}
+
+
+#gamescreen #dicearea {
+	grid-area: dicearea;
+	display: grid;
+	grid-template-columns: .15fr .15fr .15fr .15fr .15fr;
+	grid-template-areas:
+		"die1 die2 die3 die4 die5";
+	justify-content: center;
+	column-gap: 20px;
+	gap: 20px;
+}
+
+
+#gamescreen {
+	display: none;
+	grid-template-columns: .1fr .1fr 1fr .1fr .1fr;
+	grid-template-rows: .10fr .10fr 1fr .1fr .15fr .25fr;
+	grid-template-areas:
+		"tomainmenu music gametitle sfx toabout"
+		"playername playername playername playername playername"
+		"scorecard scorecard scorecard scorecard scorecard"
+		"rollmessage rollmessage rollmessage rollmessage rollmessage"
+		"dicearea dicearea dicearea dicearea dicearea"
+		"rollbutton rollbutton rollbutton rollbutton rollbutton";
+	gap: 0;
+	margin-bottom: 0;
+	height: 100%;
+	width: 100%;
+}
+
+
+#player {
+	grid-area: playername;
+	text-align: center;
+	font-size: 1.5em;
+	margin-bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+	width: 100%;
+}
+
+
+#rolldicebutton {
+	border-radius: 20%;
+	background-color: var(--secondarycolor2);
+	font-size: 2em;
+	font: bolder;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	grid-area: rollbutton;
+	height: 2.25em;
+	width: 10em;
+	justify-self: center;
+	margin-top: 10px;
+	border-color: black;
+	border-width: 5px;
+}
+
+
+#rollmessage {
+	color: white;
+	grid-area: rollmessage;
+	font-size: 1em;
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#grandtotalscore {
+	font: bold;
+}
+
+#rules {
+	grid-area: rules;
+	padding: 1em;
+	text-align: justify;
+}
+
+
+table {
+	background-color: rgba(255, 255, 255, 0.26);
+	display: table;
+	font-size: .85em;
+	grid-area: scorecard;
+	border: 5px solid black;
+	text-align: left;
+	margin: 0px;
+	width: 100%;
+	max-height: fit-content;
+}
+
+td {
+	border: 1px solid black;
+}
+
+
+footer {
+	display: none;
+}
+
+@media only screen and (min-width: 35em) {
+	#aboutbuttonfromgame {
+		background-color: var(--secondarycolor1);
+		justify-self: end;
+	}
+
+	#mainmenuscreen {
+		row-gap: 30px;
+		column-gap: 10px;
+	}
+
+
+	#gamescreen #dicearea {
+		grid-area: dicearea;
+		display: grid;
+		grid-template-columns: .15fr .15fr .15fr;
+		grid-template-rows: .5fr .5fr;
+		grid-template-areas:
+			"die1 die2 die3"
+			"die4 die5 .";
+		justify-content: center;
+		column-gap: .65em;
+		gap: .65em;
+	}
+
+
+	#gamescreen {
+		display: none;
+		grid-template-columns: .1fr .1fr .9fr .5fr .1fr;
+		grid-template-rows: .10fr .10fr .1fr .15fr 1.75fr .5fr;
+		grid-template-areas:
+			"tomainmenu music gametitle sfx toabout"
+			"playername playername playername playername ."
+			"scorecard scorecard scorecard . ."
+			"scorecard scorecard scorecard rollmessage rollmessage"
+			"scorecard scorecard scorecard dicearea dicearea"
+			"scorecard scorecard scorecard rollbutton rollbutton";
+		gap: 0;
+		margin-bottom: 0;
+		padding-top: .5em;
+		height: 100%;
+		width: 100%;
+	}
+
+
+	#rolldicebutton {
+		font-size: 1.5em;
+		width: 6em;
+		height: 2.5em;
+	}
+
+
+	#soundcontrol {
+		justify-self: flex-end;
+	}
+
+	table {
+		height: 100%;
+		justify-self: center;
+		max-height: fit-content;
+	}
+
+}
+
+@media only screen and (min-width: 60em) {
+	#aboutbutton {
+		height: 8em;
+		width: 8em;
+	}
+
+
+	#aboutbuttonfromgame {
+		font-size: 1em;
+		height: 5em;
+		width: 8em;
+	}
+
+
+	#backtogamebutton {
+		font-size: 1em;
+		height: 5em;
+		width: 8em;
+	}
+
+
+	#continuebutton {
+		height: 8em;
+		width: 8em;
+	}
+
+
+
+	#dicearea #die1 {
+		height: 5em;
+		width: 5em;
+	}
+
+
+	#dicearea #die2 {
+		height: 5em;
+		width: 5em;
+	}
+
+
+	#dicearea #die3 {
+		height: 5em;
+		width: 5em;
+	}
+
+
+	#dicearea #die4 {
+		height: 5em;
+		width: 5em;
+	}
+
+
+	#dicearea #die5 {
+		height: 5em;
+		width: 5em;
+	}
+
+
+	#gamescreentitle {
+		font-size: 5em;
+	}
+
+
+	h1 {
+		font-size: 8em;
+	}
+
+
+	#homesitebutton {
+		height: 8em;
+		width: 8em;
+	}
+
+
+	html {
+		padding: 4em;
+	}
+
+
+	#mainmenubuttonfromabout {
+		font-size: 1em;
+		height: 5em;
+		width: 8em;
+	}
+
+
+	#mainmenubuttonfromgame {
+		font-size: 1em;
+		height: 5em;
+		width: 8em;
+	}
+
+
+	#musiccontrol {
+		font-size: 1em;
+		height: 5em;
+		width: 8em;
+	}
+
+
+	#newgamebutton {
+		height: 8em;
+		width: 8em;
+	}
+
+
+	#player {
+		font-size: 3em;
+	}
+
+
+	#rolldicebutton {
+		font-size: 2em;
+		width: 10em;
+		height: 4em;
+	}
+
+
+	#rollmessage {
+		font-size: 2em;
+	}
+
+
+	#soundcontrol {
+		font-size: 1em;
+		height: 5em;
+		width: 8em;
+	}
+
+
+	table {
+		font-size: 1.5em;
+	}
 }
