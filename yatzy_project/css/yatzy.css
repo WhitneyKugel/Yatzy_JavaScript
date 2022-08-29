@@ -426,6 +426,10 @@ footer {
 		justify-self: end;
 	}
 
+	button p {
+		font-size: 1em;
+	}
+
 	#mainmenuscreen {
 		row-gap: 30px;
 		column-gap: 10px;
@@ -448,15 +452,15 @@ footer {
 
 	#gamescreen {
 		display: none;
-		grid-template-columns: .1fr .1fr .9fr .5fr .1fr;
+		grid-template-columns: .25fr .25fr 1fr .1fr .25fr .25fr;
 		grid-template-rows: .10fr .10fr .1fr .15fr 1.75fr .5fr;
 		grid-template-areas:
-			"tomainmenu music gametitle sfx toabout"
-			"playername playername playername playername ."
-			"scorecard scorecard scorecard . ."
-			"scorecard scorecard scorecard rollmessage rollmessage"
-			"scorecard scorecard scorecard dicearea dicearea"
-			"scorecard scorecard scorecard rollbutton rollbutton";
+			"tomainmenu music gametitle gametitle sfx toabout"
+			". playername playername playername playername ."
+			"scorecard scorecard scorecard . . ."
+			"scorecard scorecard scorecard . rollmessage rollmessage"
+			"scorecard scorecard scorecard . dicearea dicearea"
+			"scorecard scorecard scorecard . rollbutton rollbutton";
 		gap: 0;
 		margin-bottom: 0;
 		padding-top: .5em;
@@ -473,7 +477,7 @@ footer {
 
 
 	#soundcontrol {
-		justify-self: flex-end;
+		justify-self: center;
 	}
 
 	table {
@@ -482,9 +486,30 @@ footer {
 		max-height: fit-content;
 	}
 
+	#newgamebutton {
+		height: 8em;
+		width: 8em;
+	}
+
+	#aboutbutton {
+		height: 8em;
+		width: 8em;
+	}
+
+	#continuebutton {
+		height: 8em;
+		width: 8em;
+	}
+
+	#homesitebutton {
+		height: 8em;
+		width: 8em;
+	}
+
+
 }
 
-@media only screen and (min-width: 60em) {
+@media only screen and (min-width: 75em) {
 	#aboutbutton {
 		height: 8em;
 		width: 8em;
@@ -597,7 +622,7 @@ footer {
 
 	#rolldicebutton {
 		font-size: 2em;
-		width: 10em;
+		width: 7em;
 		color: white;
 		height: 4em;
 	}
@@ -617,5 +642,9 @@ footer {
 
 	table {
 		font-size: 1.5em;
+	}
+
+	button p {
+		font-size: 1em;
 	}
 }
