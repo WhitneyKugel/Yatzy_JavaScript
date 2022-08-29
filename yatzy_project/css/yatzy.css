@@ -70,6 +70,7 @@ a:focus {
 		"credits credits credits"
 		"about about about";
 	overflow-wrap: break-word;
+	margin: 1em;
 }
 
 
@@ -235,8 +236,8 @@ h5 {
 	font-size: 1.5em;
 }
 
-#homesitebutton p {
-	font-size: .80em;
+button p {
+	font-size: .5em;
 }
 
 
@@ -286,7 +287,7 @@ html {
 	background-color: var(--secondarycolor2);
 	color: white;
 	border-width: 2px;
-	justify-self: end;
+	justify-self: center;
 }
 
 
@@ -298,6 +299,7 @@ html {
 	background-color: var(--secondarycolor2);
 	color: white;
 	border-width: 2px;
+	justify-self: center;
 }
 
 
@@ -330,15 +332,15 @@ html {
 
 #gamescreen {
 	display: none;
-	grid-template-columns: .1fr .1 .5fr .1 .1fr;
-	grid-template-rows: .10fr .10fr 1fr .1fr .15fr .25fr;
+	grid-template-columns: .1fr .1fr .1fr .1fr .1fr .1fr;
+	grid-template-rows: .10fr .10fr 1fr .1fr .50fr .25fr;
 	grid-template-areas:
-		". tomainmenu gametitle toabout ."
-		". music . sfx ."
-		". scorecard scorecard scorecard ."
-		". rollmessage rollmessage rollmessage ."
-		". dicearea dicearea dicearea ."
-		". rollbutton rollbutton rollbutton .";
+		". gametitle gametitle gametitle gametitle ."
+		". tomainmenu music sfx toabout ."
+		". scorecard scorecard scorecard scorecard ."
+		". rollmessage rollmessage rollmessage rollmessage ."
+		". dicearea dicearea dicearea dicearea ."
+		". rollbutton rollbutton rollbutton rollbutton .";
 	gap: 0;
 	margin: auto;
 	height: 100%;
